@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="图形" />
+
+    <group>
+        <item
+            android:id="@+id/nav_columnar_chart"
+            android:icon="@drawable/ic_assessment_black_24dp"
+            android:title="@string/menu_columnar_chart" />
+        <item
+            android:id="@+id/nav_linear_chart"
+            android:icon="@drawable/ic_show_chart_black_24dp"
+            android:title="@string/menu_linear_chart" />
+        <item
+            android:id="@+id/nav_pie_chart"
+            android:icon="@drawable/ic_pie_chart_black_24dp"
+            android:title="@string/menu_pie_chart" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_communicate"
+                android:icon="@drawable/ic_local_phone_black_24dp"
+                android:title="@string/menu_communicate" />
+            <item
+                android:id="@+id/nav_check_update"
+                android:icon="@drawable/ic_file_upload_black_24dp"
+                android:title="@string/menu_check_update" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ly_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+        <RelativeLayout
+            android:id="@+id/rl_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_collapseMode="parallax">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_aotu_switch"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/black"
+            android:alpha="0.4"
+            android:layout_alignBottom="@+id/vp_aotu_switch"/>
+
+        <ImageView
+            android:id="@+id/iv_dot_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignRight="@id/vp_aotu_switch"
+            android:layout_alignBottom="@id/vp_aotu_switch"
+            android:src="@drawable/ic_dot_white"/>
+
+        <ImageView
+            android:id="@+id/iv_dot_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/iv_dot_one"
+            android:layout_alignBottom="@id/vp_aotu_switch"
+            android:src="@drawable/ic_dot_white"/>
+
+        <ImageView
+            android:id="@+id/iv_dot_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/iv_dot_two"
+            android:layout_alignBottom="@id/vp_aotu_switch"
+            android:src="@drawable/ic_dot_white"/>
+
+        <ImageView
+            android:id="@+id/iv_dot_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/iv_dot_three"
+            android:layout_alignBottom="@id/vp_aotu_switch"
+            android:src="@drawable/ic_dot_white"/>
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_collapseMode="pin"
+            android:gravity="center"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GreateInternetOfThings"
+                style="@style/FontWhite"/>
+        </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="always"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true">
+
+    <include layout="@layout/content_main" />
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
