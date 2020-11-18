@@ -29,6 +29,10 @@ public class ConstantAssemble {
     public static int AUTO_TRUN_NET=0;
     public static int AUTO_TRUN_NATIVE=1;
 
+    public static int ACTIVITY_REQUEST_CODE_BLUETEETH_CONNECT=0;
+
+    public static int ACTIVITY_RESULT_CODE_SUCCESS=0;
+
     public static String[] itemNames = {
             "小麦",
             "玉米",

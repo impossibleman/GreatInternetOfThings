@@ -1,19 +1,23 @@
 package com.example.greatinternetofthings.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.greatinternetofthings.R;
 import com.example.greatinternetofthings.adapter.MonitorItemAdapter;
+import com.example.greatinternetofthings.constant.CommonVairiable;
 import com.example.greatinternetofthings.constant.ConstantAssemble;
 import com.example.greatinternetofthings.datastructor.MonitorDetail;
 
@@ -24,6 +28,7 @@ public class MonitorRecieverActivity extends AppCompatActivity {
 
     ListView lvMonitor;
     Toolbar toolbar;
+    Button btLocalTest;
     MonitorItemAdapter adapter;
     List<MonitorDetail> monitorDetails;
     int updateTimes=0;
@@ -34,6 +39,7 @@ public class MonitorRecieverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_monitor_reciever);
         lvMonitor=findViewById(R.id.lv_monitor);
         toolbar=findViewById(R.id.toolbar);
+        btLocalTest=findViewById(R.id.bt_local_test);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,10 +47,20 @@ public class MonitorRecieverActivity extends AppCompatActivity {
                 finish();
             }
         });
+        btLocalTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateLocalData();
+            }
+        });
+
         monitorDetails=new ArrayList<>();
+        if(CommonVairiable.serverSocket==null){
+            Intent intent=new Intent(MonitorRecieverActivity.this,BlueToothConnectActivity.class);
+            startActivityForResult(intent,ConstantAssemble.ACTIVITY_REQUEST_CODE_BLUETEETH_CONNECT);
+            return;
+        }
         CreateLocalData();
-        MonitorChange monitorChange=new MonitorChange();
-        monitorChange.start();
     }
 
     Handler mHandler=new Handler(){
@@ -68,6 +84,8 @@ public class MonitorRecieverActivity extends AppCompatActivity {
         }
         adapter=new MonitorItemAdapter(this,R.layout.item_monitor,monitorDetails);
         lvMonitor.setAdapter(adapter);
+        MonitorChange monitorChange=new MonitorChange();
+        monitorChange.start();
     }
 
     class MonitorChange extends Thread{
@@ -101,6 +119,16 @@ e.printStackTrace();
             float value=eachDetail.getValue();
             value+=((updateTimes+1)%5*2);
             eachDetail.setValue(value);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==ConstantAssemble.ACTIVITY_REQUEST_CODE_BLUETEETH_CONNECT){
+            if(resultCode==ConstantAssemble.ACTIVITY_RESULT_CODE_SUCCESS){
+                CreateLocalData();
+            }
         }
     }
 }

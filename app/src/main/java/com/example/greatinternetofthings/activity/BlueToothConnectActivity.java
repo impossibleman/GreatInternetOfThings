@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.greatinternetofthings.R;
 import com.example.greatinternetofthings.adapter.ShowDeviceAdpater;
+import com.example.greatinternetofthings.constant.CommonVairiable;
 import com.example.greatinternetofthings.datastructor.BluetoothItem;
 import com.example.greatinternetofthings.interfaces.OnRLItemClicklistener;
 
@@ -45,7 +46,6 @@ public class BlueToothConnectActivity extends AppCompatActivity {
     BluetoothAdapter bluetoothAdapter;
     ShowDeviceAdpater deviceAdpater;
     Dialog dialog;
-    BluetoothServerSocket serverSocket;
     List<BluetoothItem> items;
 
     @Override
@@ -172,13 +172,12 @@ public class BlueToothConnectActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            BluetoothServerSocket serverSocket=bluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord("admin", UUID.randomUUID());
+                            CommonVairiable.serverSocket=bluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord("admin", UUID.randomUUID());
                             mHandler.sendEmptyMessage(2);
                             BluetoothSocket socket;
                             while (true){
-                                socket=serverSocket.accept();
+                                socket=CommonVairiable.serverSocket.accept();
                                 if(socket!=null){
-                                    serverSocket.close();
                                     mHandler.sendEmptyMessage(1);
                                     break;
                                 }
@@ -193,9 +192,9 @@ public class BlueToothConnectActivity extends AppCompatActivity {
     }
 
     public void CancelConnect(){
-        if(serverSocket!=null){
+        if(CommonVairiable.serverSocket!=null){
             try {
-                serverSocket.close();
+                CommonVairiable.serverSocket.close();
             }
             catch (Exception e){
                 e.printStackTrace();

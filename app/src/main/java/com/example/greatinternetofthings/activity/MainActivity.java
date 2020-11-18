@@ -176,8 +176,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
         vpImages.setCurrentItem(1);
-        rvArticles.setAdapter(new ArticlesAdapter());
+        ArticlesAdapter articlesAdapter=new ArticlesAdapter();
+        rvArticles.setAdapter(articlesAdapter);
         rvArticles.setLayoutManager(new GridLayoutManager(this, 2));
+        articlesAdapter.setOnItemClicklistener(new OnRLItemClicklistener() {
+            @Override
+            public void OnClick(int position) {
+                Intent intent=new Intent(MainActivity.this,ArticlesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void ChangeDotScale(int lastPosition) {

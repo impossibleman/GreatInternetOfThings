@@ -17,6 +17,16 @@
         app:title="实时监测中"
         app:titleTextColor="@color/white"/>
 
+    <Button
+        android:id="@+id/bt_local_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:text="本地测试"
+        style="@style/FontCommon"/>
+
     <ListView
         android:id="@+id/lv_monitor"
         android:layout_width="match_parent"
